@@ -22,4 +22,4 @@ def handle_list_lending():
             rows.append(row)
 
         headers = [key.upper() for key in lending[0].keys()]
-        print(tabulate(rows, headers, tablefmt="rounded_grid"))
+        print("\n" + tabulate(rows, headers, tablefmt="rounded_grid"))

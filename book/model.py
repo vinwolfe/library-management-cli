@@ -1,9 +1,9 @@
-BOOKS_FILE = "storage/books.txt"
+from utils.constants import BOOKS_FILE
 
 def load_books():
     try:
         with open(BOOKS_FILE, "r") as file:
-            return [convert_to_book_json(line) for line in file]
+            return [convert_to_book_dict(line) for line in file]
     except FileNotFoundError:
         open(BOOKS_FILE, "w").close()
         return []
@@ -32,7 +32,7 @@ def update_book_availability(_book_id: str, _availability: bool):
         for line in updated:
             file.write(line)
 
-def convert_to_book_json(raw_data: str):
+def convert_to_book_dict(raw_data: str):
     data = raw_data.strip().split(",")
     return {
         "id": data[0],
@@ -41,5 +41,5 @@ def convert_to_book_json(raw_data: str):
         "available": data[3] == "True",
     }
 
-def convert_to_book_str(json_data):
-    return f"{json_data['id']},{json_data['title']},{json_data['author']},{json_data['available']}\n"
+def convert_to_book_str(dict: dict) -> str:
+    return f"{dict['id']},{dict['title']},{dict['author']},{dict['available']}\n"

@@ -1,9 +1,9 @@
-MEMBERS_FILE = "storage/members.txt"
+from utils.constants import MEMBERS_FILE
 
 def load_members():
     try:
         with open(MEMBERS_FILE, "r") as file:
-            return [convert_to_member_json(line) for line in file]
+            return [convert_to_member_dict(line) for line in file]
     except FileNotFoundError:
         open(MEMBERS_FILE, "w").close()
         return []
@@ -20,7 +20,7 @@ def add_member(_id: str, _name: str, _contact: str):
         file.write(f"{_id},{_name},{_contact}\n")
 
 
-def convert_to_member_json(raw_data: str):
+def convert_to_member_dict(raw_data: str):
     data = raw_data.strip().split(",")
     return {
         "id": data[0],
@@ -28,5 +28,5 @@ def convert_to_member_json(raw_data: str):
         "contact": data[2]
     }
 
-def convert_to_member_str(json_data):
-    return f"{json_data['id']},{json_data['name']},{json_data['contact']}\n"
+def convert_to_member_str(dict: dict) -> str:
+    return f"{dict['id']},{dict['name']},{dict['contact']}\n"

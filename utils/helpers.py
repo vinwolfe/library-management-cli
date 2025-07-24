@@ -15,9 +15,29 @@ def print_instructions():
     7    : Display lending records
     
     help : Show Instructions
-    x    : Exit
+    exit : Exit
     
     """)
 
 def print_exit_message():
     print("Thank you for using the Library Management System. Goodbye!\n")
+
+def handle_max_attempts():
+    print("\nYou have reached the maximum attempts.")
+    to_continue = input("Would you like to continue? (yes/no): ").strip().lower()
+    if to_continue == 'yes':
+        return True
+    elif to_continue == 'no':
+        print("\nReturning to main menu\n")
+        return False
+
+def handle_continue(text: str = "Would you like to perform this action again? (yes/no): "):
+    to_continue = input("\n" + text).strip().lower()
+    if to_continue == 'yes':
+        return True
+    elif to_continue == 'no':
+        print("Returning to main menu.")
+        return False
+    else:
+        print("Invalid input. Returning to main menu.")
+        return False

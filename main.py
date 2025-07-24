@@ -1,12 +1,9 @@
-import utils.helpers as h
 import book.controller as books_controller
 import member.controller as members_controller
 import lending.controller as lending_controller
 import services.lending_service as lending_service
 
-
-h.print_greeting()
-h.print_instructions()
+import utils.helpers as h
 
 commands_list = {
     "1": books_controller.handle_add_book,
@@ -16,12 +13,14 @@ commands_list = {
     "5": books_controller.handle_list_books,
     "6": members_controller.handle_list_members,
     "7": lending_controller.handle_list_lending,
+    "help": h.print_instructions,
 }
 
-running = True
-
 def main():
-    while running:
+    h.print_greeting()
+    h.print_instructions()
+
+    while True:
         command = input("Enter command: ")
 
         # This command will exit the application
@@ -33,11 +32,7 @@ def main():
             commands_list[command]()
             print()
 
-        # This command will handle displaying the instructions of the application
-        elif command == "help":
-            h.print_instructions()
-
-        # This will ensure that no other commands are excepted
+        # This will ensure that no other commands are accepted
         else:
             print("Invalid command.")
 
