@@ -1,6 +1,9 @@
 from . import model as l
 from tabulate import tabulate
 
+def handle_get_lending():
+    return l.load_lending()
+
 def handle_add_lending(_book_id: str, _member_id: str):
     l.add_lending(_book_id, _member_id)
     print("Lending record saved")
